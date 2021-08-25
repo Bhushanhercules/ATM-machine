@@ -3,7 +3,7 @@ import time
 
 #Calling MySQL and taking data
 import mysql.connector as cn
-conn=cn.connect(host='localhost',user='bhushan',password='1234',database='abc_bank_data')
+conn=cn.connect(host='localhost',user='*******',password='****',database='*******')
 bd=conn.cursor()
 s="INSERT INTO ad(Card_no,PIN,Balance,Debited,CB) VALUES(%s,%s,%s,%s,%s)"
 
@@ -82,7 +82,7 @@ while Tryagain != 4:
                     print('Your updated balance is:', balance1)
 
                     #Will send the mail to the user 
-                    SendEMail('bhumbang@gmail.com','Amount Deducted','Your ATM card is used in ABC Bank ATM Machine')    
+                    SendEMail('********@gmail.com','Amount Deducted','Your ATM card is used in ABC Bank ATM Machine')    
 
                     #will save data automatically in MySQl data in RDBMS
                     j=(Card_No,PIN,balance,withdraw,balance1)
@@ -101,7 +101,7 @@ while Tryagain != 4:
                 print('And your Current Balance is:',balance2)
 
                 #Will send the mail to the user
-                SendEMail('bhumbang@gmail.com','Amount Deducted','Your ATM card is used in ABC Bank ATM Machine')
+                SendEMail('********@gmail.com','Amount Deducted','Your ATM card is used in ABC Bank ATM Machine')
 
                 #will save data automatically in MySQl data in RDBMS
                 j1=(Card_No,PIN,balance,fund,balance2)
@@ -109,26 +109,29 @@ while Tryagain != 4:
                 conn.commit()
                 
             else:
-                New=int(input('Enter new PIN'))
-                new=int(input('Confirm Your new PIN'))
-                
-                if New==new:
-                    print('Your PIN is Changed Sucesfully')
-                    SendEMail('bhumbang@gmail.com','PIN CHANGED','Your ATM card PIN is Changed in ABC Bank ATM Machine')
-                else:
-                    print('Try Again')
-            
+                Try = 1
+                while Try != 4:
+                    New=int(input('Enter new PIN'))
+                    new=int(input('Confirm Your new PIN'))
+
+                    if New==new:
+                        print('Your PIN is Changed Sucesfully')
+                        SendEMail('******@gmail.com','PIN CHANGED','Your ATM card PIN is Changed in ABC Bank ATM Machine')
+                    else:
+                        print('Try Again')
+                        time.sleep(1) #To take 1sec of pause
+                        Try = Try + 1 #by this Loop will automatically ends after 3 wrong attempts
     
     
     except:
         print('Error in the process')
         
-#it will come in case of 3 wrong attempt of passwords       
+#it will appear in case of 3 wrong attempt of passwords       
 print('Your card is Locked \nTo unlock card Admin login requried')
 print('Please Contact Admin!, And ask for help')
 
 #Will send the mail to the user
-SendEMail('bhumbang@gmail.com','login OTP','your OTP :8937')
+SendEMail('********@gmail.com','login OTP','your OTP :8937')
 num=8937
 OTP=int(input('Enter the given OTP: '))
 
@@ -148,6 +151,7 @@ if OTP==num:
     if (Enter==1):
         de=input("Enter costumer's personal details: ")
         print(de, "New Account is created Successfully")
+    
     elif (Enter==2):
         acc=int(input("Enter Account Number: "))
         print(acc, "application for new card is been proceeded \nThe new card will be delivered to as soon as possible")
@@ -157,7 +161,7 @@ if OTP==num:
         print(ac, "application for closing an account is under surviliance, it will take 2 to 3 working days")
 
     elif (Enter==4):
-        print('To Unlock Your Card Enter details')
+        print('To Unlock Your Card Enter Account details')
         card_no=int(input('Enter Your card_no: '))
 
         if card_no==Card_No:
